@@ -1,19 +1,26 @@
-package com.health.service;
+package com.health.service.implementation;
 
 import com.health.model.Patient;
+import com.health.repository.IGenericRepository;
 import com.health.repository.IPatientRepository;
+import com.health.service.IPatientService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class PatientService implements IPatientService {
+public class PatientService extends GenericService<Patient, Integer> implements IPatientService {
     //@Autowired
     private final IPatientRepository repo;
 
+    @Override
+    protected IGenericRepository<Patient, Integer> getRepo() {
+        return repo;
+    }
+
+    /*
     @Override
     public Patient save(Patient patient) throws Exception {
         return repo.save(patient);
@@ -41,6 +48,7 @@ public class PatientService implements IPatientService {
     public void delete(Integer id) throws Exception {
         repo.deleteById(id);
     }
+     */
 
     /*public PatientService(IPatientRepository repo) {
         this.repo = repo;

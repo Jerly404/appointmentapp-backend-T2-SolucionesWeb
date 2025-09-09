@@ -2,10 +2,7 @@ package com.health.controller;
 
 import com.health.model.Patient;
 import com.health.service.IPatientService;
-import com.health.service.PatientService;
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
