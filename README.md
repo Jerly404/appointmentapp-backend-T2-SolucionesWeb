@@ -4,7 +4,7 @@ Proyecto generado usando [Spring Initializr](https://start.spring.io/)
 
 Backend para la aplicación web de citas médixas, el frontend está desarrollado el Angular.
 
-Este proyecto es desarrollado como parte del curso <b>Soluciones Web y Aplicaciones Distribuidas</b> con <b>NRC 3021</b>, correspondiente al <b>período UPN 2025-2</b>
+Este proyecto es desarrollado como parte del curso <b>Soluciones Web y Aplicaciones Distribuidas</b> con <b>NRC 3421</b>, correspondiente al <b>período UPN 2025-2</b>
 - ARQUITECTURA: n-capas
 ## Versiones
 
