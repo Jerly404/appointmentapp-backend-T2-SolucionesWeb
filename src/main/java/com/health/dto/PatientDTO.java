@@ -1,0 +1,18 @@
+package com.health.dto;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class PatientDTO {
+    private int idPatient;
+    private String firstName;
+    private String lastName;
+    private String dni;
+    private String address;
+    private String phone;
+    private String email;
+}

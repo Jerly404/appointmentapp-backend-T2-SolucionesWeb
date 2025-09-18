@@ -36,6 +36,10 @@ public class Patient {
     @Column(nullable = false, length = 60)
     private String email;
 
+    // private String password;
+    // private String credit_card;
+    // private String account_number;
+
     /*public Patient() {
     }*/
 
