@@ -3,6 +3,7 @@ package com.health.controller;
 import com.health.dto.PatientDTO;
 import com.health.model.Patient;
 import com.health.service.IPatientService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
@@ -45,7 +46,7 @@ public class PatientController {
     }
 
     @PostMapping
-    public ResponseEntity<PatientDTO> save(@RequestBody PatientDTO dto) throws Exception{
+    public ResponseEntity<PatientDTO> save(@Valid @RequestBody PatientDTO dto) throws Exception{
         // Patient obj = service.save(patient);
         //Patient obj = service.save(modelMapper.map(dto, Patient.class));
         Patient obj = service.save(convertToEntity(dto));
@@ -56,7 +57,7 @@ public class PatientController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<PatientDTO> update(@PathVariable("id") Integer id, @RequestBody PatientDTO dto) throws Exception{
+    public ResponseEntity<PatientDTO> update(@Valid @PathVariable("id") Integer id, @RequestBody PatientDTO dto) throws Exception{
         //Patient obj =  service.update(patient, id);
         //return ResponseEntity.ok(obj);
 

@@ -69,3 +69,22 @@ Y la configuración de `application.properties`
     spring.datasource.username=your_user
     spring.datasource.password=your_password
 ```
+Para el mapeo de DTO's puedes utilizar [ModelMapper](https://modelmapper.org/getting-started/) y [MapStruct](https://mapstruct.org/). La dependencia para modelMapper es:
+```
+    <!-- https://mvnrepository.com/artifact/org.modelmapper/modelmapper -->
+    <dependency>
+        <groupId>org.modelmapper</groupId>
+        <artifactId>modelmapper</artifactId>
+        <version>3.2.4</version>
+    </dependency>
+```
+
+Para la configuración de validaciones , la dependencia es:
+```
+    <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-validation -->
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-validation</artifactId>
+        <version>3.5.5</version>
+    </dependency>
+```
