@@ -1,5 +1,6 @@
 package com.health.service.implementation;
 
+import com.health.exception.ModelNotFoundException;
 import com.health.repository.IGenericRepository;
 import com.health.service.IGenericService;
 
@@ -16,6 +17,7 @@ public abstract class GenericService<T, ID> implements IGenericService<T, ID> {
     @Override
     public T update(T t, ID id) throws Exception {
         // VALIDACION DE ID MAS ADELANTE
+        getRepo().findById(id).orElseThrow(()->new ModelNotFoundException("ID NOT FOUND: " + id));
         return getRepo().save(t);
     }
 
@@ -26,11 +28,13 @@ public abstract class GenericService<T, ID> implements IGenericService<T, ID> {
 
     @Override
     public T findById(ID id) throws Exception {
-        return getRepo().findById(id).orElse(null);
+        //return getRepo().findById(id).orElse(null);
+        return getRepo().findById(id).orElseThrow(()->new ModelNotFoundException("ID NOT FOUND: " + id));
     }
 
     @Override
     public void delete(ID id) throws Exception {
+        getRepo().findById(id).orElseThrow(()->new ModelNotFoundException("ID NOT FOUND: " + id));
         getRepo().deleteById(id);
     }
 }
