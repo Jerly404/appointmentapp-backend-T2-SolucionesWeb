@@ -1,6 +1,7 @@
 package com.health.dto;
 
-import com.health.model.Specialty;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,10 +10,22 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class MedicDTO {
-    private int idMedic;
-    private Specialty specialty;
-    private String firstName;
-    private String lastName;
-    private String cmp;
-    private String photoUrl;
+    private Integer idMedic;
+
+    @NotNull
+    private Integer idSpecialty;
+
+    @NotNull
+    @Size(min = 3)
+    private String primaryName;
+
+    @Size(min = 3)
+    private String surname;
+
+    @NotNull
+    @Size(min = 3, max = 12)
+    private String cmpMedic;
+
+    @NotNull
+    private String photo;
 }

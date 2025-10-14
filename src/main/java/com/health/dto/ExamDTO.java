@@ -1,5 +1,6 @@
 package com.health.dto;
 
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -8,7 +9,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ExamDTO {
-    private int idExam;
-    private String name;
-    private String description;
+    private Integer idExam;
+
+    @NotNull
+    private String nameExam;
+
+    @NotNull
+    private String descriptionExam;
 }

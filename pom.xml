@@ -48,6 +48,12 @@
             <version>3.2.4</version>
         </dependency>
 
+        <!-- Hateoas - Nivel 3 Richardson -->
+        <dependency>
+            <groupId>org.springframework.hateoas</groupId>
+            <artifactId>spring-hateoas</artifactId>
+        </dependency>
+
         <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-validation -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
