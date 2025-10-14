@@ -1,10 +1,16 @@
 package com.health.controller;
 
+import com.health.dto.MedicDTO;
 import com.health.model.Medic;
 import com.health.service.IMedicService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.modelmapper.ModelMapper;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -12,29 +18,46 @@ import java.util.List;
 @RequiredArgsConstructor
 public class MedicController {
     private final IMedicService service;
+    private final ModelMapper modelMapper;
 
     @GetMapping
-    public List<Medic> findAll() throws Exception{
-        return service.findAll();
+    public ResponseEntity<List<MedicDTO>> findAll() throws Exception{
+        List<MedicDTO> list = service.findAll().stream().map(this::convertToDto).toList(); // e -> convertToDto(e)
+        return ResponseEntity.ok(list);
     }
 
     @GetMapping("/{id}")
-    public Medic findById(@PathVariable("id") Integer id) throws Exception{
-        return service.findById(id);
+    public ResponseEntity<MedicDTO>  findById(@PathVariable("id") Integer id) throws Exception{
+        MedicDTO obj = convertToDto(service.findById(id)) ;
+        return ResponseEntity.ok(obj);
     }
 
     @PostMapping
-    public Medic save(@RequestBody Medic medic) throws Exception{
-        return service.save(medic);
+    public ResponseEntity<MedicDTO> save(@Valid @RequestBody MedicDTO dto) throws Exception{
+        Medic obj = service.save(convertToEntity(dto));
+        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getIdMedic()).toUri();
+        return ResponseEntity.created(location).build();
     }
 
     @PutMapping("/{id}")
-    public Medic update(@PathVariable("id") Integer id, @RequestBody Medic medic) throws Exception{
-        return service.update(medic, id);
+    public ResponseEntity<MedicDTO> update(@Valid @PathVariable("id") Integer id, @RequestBody MedicDTO dto) throws Exception{
+        Medic obj =  service.update(convertToEntity(dto), id);
+        return ResponseEntity.ok(convertToDto(obj));
     }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable("id") Integer id) throws Exception{
+    public ResponseEntity<Void> delete(@PathVariable("id") Integer id) throws Exception{
         service.delete(id);
+        return ResponseEntity.noContent().build();
+    }
+
+    // Convertir de un Modelo a un DTO
+    private MedicDTO convertToDto(Medic obj){
+        return modelMapper.map(obj, MedicDTO.class);
+    }
+
+    // Convertir de un DTO a un Modelo (Entity)
+    private Medic convertToEntity(MedicDTO dto){
+        return modelMapper.map(dto, Medic.class);
     }
 }

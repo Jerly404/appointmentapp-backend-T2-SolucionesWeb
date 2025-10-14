@@ -19,6 +19,7 @@ import java.util.List;
 @RequestMapping("/patients")
 //@AllArgsConstructor
 @RequiredArgsConstructor
+// @CrossOrigin(origins = "*")
 public class PatientController {
     //@Autowired
     private final IPatientService service;
