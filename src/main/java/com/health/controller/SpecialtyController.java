@@ -27,7 +27,7 @@ public class SpecialtyController {
 
     //@Autowired
     private final ISpecialtyService service;
-    //@Qualifier("defaultMapper")
+    @Qualifier("defaultMapper")
     private final ModelMapper modelMapper;
 
     @GetMapping

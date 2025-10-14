@@ -12,7 +12,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "user_data")
+//@Table(name = "user_data")
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class User {
 
@@ -29,5 +29,10 @@ public class User {
     @Column(nullable = false)
     private boolean enabled;
 
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "user_role",
+            joinColumns = @JoinColumn(name = "id_user", referencedColumnName = "idUser"),
+            inverseJoinColumns = @JoinColumn(name = "id_role", referencedColumnName = "idRole")
+    )
     private List<Role> roles;
 }
