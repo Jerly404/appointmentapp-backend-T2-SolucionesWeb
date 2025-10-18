@@ -1,9 +1,6 @@
 package com.health.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -28,5 +25,19 @@ public class Product {
     private Double unitPrice;
     private Integer stock;
     private LocalDate expired;
-    private String drugLaboraty;
+
+    @ManyToOne
+    @JoinColumn(name ="id_category", nullable = false,
+            foreignKey = @ForeignKey( name="FK_PRODUCT_CATEGORY"))
+    private Category category;
+
+    @ManyToOne
+    @JoinColumn(name ="id_family", nullable = false,
+            foreignKey = @ForeignKey( name="FK_PRODUCT_FAMILY"))
+    private Family family;
+
+    @ManyToOne
+    @JoinColumn(name ="id_laboratory", nullable = false,
+            foreignKey = @ForeignKey( name="FK_PRODUCT_LABORATORY"))
+    private Laboratory laboratory;
 }
