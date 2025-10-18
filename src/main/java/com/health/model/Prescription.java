@@ -17,8 +17,10 @@ public class Prescription {
     @EqualsAndHashCode.Include
     private Integer idPrescription;
 
+    private String detail;
+
     @ManyToOne
     @JoinColumn(name ="id_consult", nullable = false,
             foreignKey = @ForeignKey( name="FK_PRESCRIPTION_CONSULT"))
-    private Consult consult ;
+    private Consult consult;
 }
